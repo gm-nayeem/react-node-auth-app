@@ -38,13 +38,13 @@ passport.use(
     )
 );
 
-// create session id
-// whenever we login it creates user id inside session
+// create session email
+// whenever we login it creates user email inside session
 passport.serializeUser((user, done) => {
     done(null, user.email);
 });
 
-// find session info using session id
+// find session info using session email
 passport.deserializeUser(async (email, done) => {
     try {
         const user = await User.findOne({ email }).select('-password');

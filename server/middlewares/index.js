@@ -24,6 +24,5 @@ const middlewares = [
 ];
 
 module.exports = (app) => {
-    // app.set("trust proxy", 1);
     middlewares.forEach(middleware => app.use(middleware));
 };
