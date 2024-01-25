@@ -4,6 +4,7 @@ const createError = require('http-errors');
 
 require("./config/passport");
 const middlewares = require('./middlewares');
+const proxy = require('./config/setupProxy');
 const authRoute = require('./routes/authRoute');
 const { errorResponse } = require('./controllers/responseController');
 
@@ -11,6 +12,7 @@ const app = express();
 
 // set middlewares 
 middlewares(app);
+proxy(app);
 
 app.get('/', (req, res) => {
     res.status(200).json({
@@ -20,7 +22,7 @@ app.get('/', (req, res) => {
 });
 
 // set routes
-app.use('/api/auth', authRoute);
+app.use('/auth', authRoute);
 
 // client error handling
 app.use((req, res, next) => {

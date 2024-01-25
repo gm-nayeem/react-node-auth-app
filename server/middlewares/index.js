@@ -9,7 +9,7 @@ const middlewares = [
     cookieParser(),
     morgan('dev'),
     cors({
-        origin: process.env.CLIENT_URL,
+        origin: true,
         credentials: true
     }),
     bodyParser.json(),
