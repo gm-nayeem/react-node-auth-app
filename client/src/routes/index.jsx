@@ -25,10 +25,10 @@ const Index = () => {
             try {
                 const res = await axios.get(`${apiUrl}/auth/login/success`, {
                     withCredentials: true,
-                    // headers: {
-                    //     Accept: "application/json",
-                    //     "Content-Type": "application/json",
-                    // },
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                    },
                 });
 
                 if (res) {
@@ -40,7 +40,7 @@ const Index = () => {
             }
         };
 
-        // fetchUser();
+        fetchUser();
     }, [dispatch]);
 
     const Layout = () => {

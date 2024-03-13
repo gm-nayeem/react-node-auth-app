@@ -4,21 +4,25 @@ const createError = require('http-errors');
 
 require("./config/passport");
 const middlewares = require('./middlewares');
-const proxy = require('./config/setupProxy');
+// const proxy = require('./config/setupProxy');
+
 const authRoute = require('./routes/authRoute');
+const customerRoute = require('./routes/customerRoute');
+const productRoute = require('./routes/productRoute');
+
 const { errorResponse } = require('./controllers/responseController');
 
 const app = express();
 
 // set middlewares 
 middlewares(app);
-proxy(app);
+// proxy(app);
 
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// app.use((req, res, next) => {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
 
 app.get('/', (req, res) => {
     res.status(200).json({
@@ -28,7 +32,9 @@ app.get('/', (req, res) => {
 });
 
 // set routes
-app.use('/auth', authRoute);
+app.use('/api/auth', authRoute);
+app.use('/api/customers', customerRoute);
+app.use('/api/products', productRoute);
 
 // client error handling
 app.use((req, res, next) => {
