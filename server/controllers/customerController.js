@@ -31,12 +31,12 @@ const deleteCustomer = async (req, res, next) => {
 
 const getAllCustomer = async (req, res, next) => {
     try {
-        const customers = await Customer.find();
+        // const customers = await Customer.find();
 
         successResponse(res, {
             statusCode: 200,
             message: 'Retured all customers',
-            payload: customers
+            payload: [{ test: 'test' }]
         });
     } catch (err) {
         next(err);

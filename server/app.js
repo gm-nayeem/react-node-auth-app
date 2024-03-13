@@ -2,14 +2,13 @@ require("dotenv").config();
 const express = require('express');
 const createError = require('http-errors');
 
-require("./config/passport");
-const middlewares = require('./middlewares');
+// require("./config/passport");
 // const proxy = require('./config/setupProxy');
+// const authRoute = require('./routes/authRoute');
 
-const authRoute = require('./routes/authRoute');
+const middlewares = require('./middlewares');
 const customerRoute = require('./routes/customerRoute');
 const productRoute = require('./routes/productRoute');
-
 const { errorResponse } = require('./controllers/responseController');
 
 const app = express();
@@ -32,7 +31,7 @@ app.get('/', (req, res) => {
 });
 
 // set routes
-app.use('/api/auth', authRoute);
+// app.use('/api/auth', authRoute);
 app.use('/api/customers', customerRoute);
 app.use('/api/products', productRoute);
 
