@@ -5,13 +5,15 @@ const productSchema = Schema({
         type: String,
         required: true,
     },
-    description: {
+    price: {
         type: String,
         required: true,
     },
+    description: {
+        type: String,
+    },
     image: {
         type: String,
-        required: true,
     },
 }, { timestamps: true });
 

@@ -5,6 +5,15 @@ const customerSchema = Schema({
         type: String,
         required: true,
     },
+    password: {
+        type: String,
+    },
+    productName: {
+        type: String,
+    },
+    productPrice: {
+        type: String,
+    },
     address: {
         type: Number,
     },
