@@ -1,30 +1,26 @@
 const cors = require('cors');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-// const cookieParser = require('cookie-parser');
-// const passport = require("passport");
-// const session = require("express-session");
+const cookieParser = require('cookie-parser');
+const passport = require("passport");
+const session = require("express-session");
 
 const middlewares = [
-    // cookieParser(),
-    // cors({
-    //     origin: process.env.CLIENT_URL,
-    //     credentials: true
-    // }),
+    cookieParser(),
     cors({
-        origin: 'http://localhost:3001',
+        origin: process.env.CLIENT_URL,
         credentials: true
     }),
     morgan('dev'),
     bodyParser.json(),
     bodyParser.urlencoded({ extended: true }),
-    // session({
-    //     secret: process.env.SECRET_KEY,
-    //     resave: false,
-    //     saveUninitialized: true
-    // }),
-    // passport.initialize(),
-    // passport.session()
+    session({
+        secret: process.env.SECRET_KEY,
+        resave: false,
+        saveUninitialized: true
+    }),
+    passport.initialize(),
+    passport.session()
 ];
 
 module.exports = (app) => {

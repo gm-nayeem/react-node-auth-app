@@ -2,13 +2,11 @@ require("dotenv").config();
 const express = require('express');
 const createError = require('http-errors');
 
-// require("./config/passport");
+require("./config/passport");
 // const proxy = require('./config/setupProxy');
-// const authRoute = require('./routes/authRoute');
+const authRoute = require('./routes/authRoute');
 
 const middlewares = require('./middlewares');
-const customerRoute = require('./routes/customerRoute');
-const productRoute = require('./routes/productRoute');
 const { errorResponse } = require('./controllers/responseController');
 
 const app = express();
@@ -17,11 +15,11 @@ const app = express();
 middlewares(app);
 // proxy(app);
 
-// app.use((req, res, next) => {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 app.get('/', (req, res) => {
     res.status(200).json({
@@ -31,9 +29,7 @@ app.get('/', (req, res) => {
 });
 
 // set routes
-// app.use('/api/auth', authRoute);
-app.use('/api/customers', customerRoute);
-app.use('/api/products', productRoute);
+app.use('/api/auth', authRoute);
 
 // client error handling
 app.use((req, res, next) => {
