@@ -11,8 +11,11 @@ const middlewares = [
     //     origin: process.env.CLIENT_URL,
     //     credentials: true
     // }),
+    cors({
+        origin: 'http://localhost:3001',
+        credentials: true
+    }),
     morgan('dev'),
-    cors(),
     bodyParser.json(),
     bodyParser.urlencoded({ extended: true }),
     // session({
